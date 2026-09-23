@@ -1,5 +1,5 @@
 'use strict';
-let currentView='home';const viewTitles={home:'الرئيسية',books:'كتبي',reader:'جلسة القراءة',progress:'تقدّمي'};
+let currentView='home';const viewTitles={home:'الرئيسية',books:'كتبي',reader:'جلستي',progress:'تقدمي'};
 function go(view,focus=true){if(!viewTitles[view])view='home';currentView=view;document.querySelectorAll('.app-view').forEach(el=>el.hidden=el.id!=='view-'+view);document.querySelectorAll('[data-view]').forEach(el=>{if(el.dataset.view===view)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});$('screenTitle').textContent=viewTitles[view];if(location.hash!=='#'+view)history.replaceState(null,'','#'+view);refreshUI();if(focus){window.scrollTo({top:0,behavior:'instant'});$('screenTitle').focus({preventScroll:true})}}
 const dayIndex=()=>Math.max(0,Math.min(20,Math.floor((new Date(today()+'T12:00:00')-new Date(state.start+'T12:00:00'))/86400000)));
 function editBook(i){state.selected=i;save();render();$('bookDialog').showModal()}
