@@ -29,6 +29,7 @@ const planStyles=document.createElement('link');planStyles.rel='stylesheet';plan
       const weekly=one('#weeklyMode').getAttribute('aria-pressed')==='true';
       const reading=weekly?rangeDays(start,end,selected):[];
       const specificCount=one('#selectedDates').children.length;
+      if(!start&&!end&&!target&&!selected.length&&!specificCount)one('#planError').textContent='';
       const totalDays=weekly?reading.length:specificCount;
       const overview=one('#planOverview');overview.replaceChildren();
       [['بداية الدورة',one('#startDisplay').textContent],['نهاية الدورة',one('#endDisplay').textContent],['أيام القراءة',totalDays?`${nf.format(totalDays)} يومًا`:'—']].forEach(([label,value])=>{const item=document.createElement('div');item.innerHTML=`<span>${label}</span><strong>${value}</strong>`;overview.append(item)});
