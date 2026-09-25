@@ -1,5 +1,5 @@
 'use strict';
-const identityStyles=document.createElement('link');identityStyles.rel='stylesheet';identityStyles.href='identity.css?v=1';document.head.append(identityStyles);const readingStyles=document.createElement('link');readingStyles.rel='stylesheet';readingStyles.href='reading-estimates.css?v=1';document.head.append(readingStyles);const planUiScript=document.createElement('script');planUiScript.src='plan-ui.js?v=2';planUiScript.defer=true;document.head.append(planUiScript);
+const identityStyles=document.createElement('link');identityStyles.rel='stylesheet';identityStyles.href='identity.css?v=1';document.head.append(identityStyles);const readingStyles=document.createElement('link');readingStyles.rel='stylesheet';readingStyles.href='reading-estimates.css?v=2';document.head.append(readingStyles);const planUiScript=document.createElement('script');planUiScript.src='plan-ui.js?v=2';planUiScript.defer=true;document.head.append(planUiScript);
 const $=id=>document.getElementById(id),key='reading-journey-v2',fmt=new Intl.NumberFormat('ar-SA',{maximumFractionDigits:1}),n=v=>fmt.format(v);
 function dateString(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 const today=()=>dateString(new Date()),addDays=(s,n)=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return dateString(d)};
