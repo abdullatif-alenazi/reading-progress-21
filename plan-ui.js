@@ -1,10 +1,9 @@
 'use strict';
-const planStyles=document.createElement('link');planStyles.rel='stylesheet';planStyles.href='plan-ui.css?v=1';document.head.append(planStyles);
+const planStyles=document.createElement('link');planStyles.rel='stylesheet';planStyles.href='plan-ui.css?v=2';document.head.append(planStyles);
 (()=>{
   const one=(selector,root=document)=>root.querySelector(selector);
   const nf=new Intl.NumberFormat('ar-SA',{maximumFractionDigits:1});
   const dateValue=value=>new Date(`${value}T12:00:00`);
-  const dayLabel=value=>dateValue(value).toLocaleDateString('ar-SA',{weekday:'short',day:'numeric',month:'short',calendar:'gregory'});
   const rangeDays=(start,end,selected)=>{
     if(!start||!end||start>end)return [];
     const result=[];
@@ -13,32 +12,29 @@ const planStyles=document.createElement('link');planStyles.rel='stylesheet';plan
   };
   function setup(){
     const form=one('#planForm');
-    if(!form||one('#planOverview'))return;
-    const card=one('#view-plan .panel');
-    const dates=one('.plan-dates',form),counter=one('.reading-counter',form),schedule=one('.schedule-mode',form),errors=one('#planError',form);
-    card.querySelector('h2').insertAdjacentHTML('afterend','<p class="plan-intro">خطّة واضحة، ووتيرة مناسبة، وأيام قراءة محددة.</p><section id="planOverview" class="plan-overview" aria-live="polite"></section>');
-    dates.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">مدة الدورة</h3>');
-    const goal=one('#targetBooks').closest('label');goal.classList.add('plan-goal');
-    goal.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">هدف القراءة</h3>');
-    schedule.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">جدول القراءة</h3>');
-    errors.insertAdjacentHTML('beforebegin','<section id="planCadence" class="plan-cadence" aria-live="polite"></section><section id="planPreview" class="plan-preview" aria-live="polite"></section>');
-    const save=one('button[type="submit"]',form);save.classList.add('plan-save');
+    if(!form||one('.plan-card'))return;
+    const dates=one('.plan-dates',form),counter=one('.reading-counter',form),schedule=one('.schedule-mode',form),weekly=one('#weeklyFields',form),specific=one('#specificFields',form),goal=one('#targetBooks').closest('label'),errors=one('#planError',form),save=one('button[type="submit"]',form);
+    const makeCard=(title,description)=>{const section=document.createElement('section');section.className='plan-card';section.innerHTML=`<div class="plan-card-heading"><h3>${title}</h3><p>${description}</p></div>`;return section};
+    const duration=makeCard('مدة الدورة','اختر بداية الدورة ونهايتها.'),days=makeCard('أيام القراءة','حدد الأيام التي ستخصصها للقراءة.'),target=makeCard('عدد الكتب المستهدفة','ضع الهدف الذي تريد إنجازه في هذه الدورة.');
+    form.insertBefore(duration,form.firstChild);duration.append(dates,counter);
+    form.insertBefore(days,errors);days.append(schedule,weekly,specific);
+    form.insertBefore(target,errors);target.append(goal);
+    weekly.querySelector('legend').textContent='اختر أيام الأسبوع';
+    errors.insertAdjacentHTML('beforebegin','<section id="planCadence" class="plan-cadence" hidden aria-live="polite"></section>');
+    save.classList.add('plan-save');
     const refresh=()=>{
-      const start=one('#start').value,end=one('#end').value,target=Number(one('#targetBooks').value)||0;
+      const start=one('#start').value,end=one('#end').value,targetBooks=Number(one('#targetBooks').value)||0;
       const selected=[...one('#weekdays').querySelectorAll('input:checked')].map(input=>Number(input.value));
-      const weekly=one('#weeklyMode').getAttribute('aria-pressed')==='true';
-      const reading=weekly?rangeDays(start,end,selected):[];
+      const weeklyMode=one('#weeklyMode').getAttribute('aria-pressed')==='true';
+      const reading=weeklyMode?rangeDays(start,end,selected):[];
       const specificCount=one('#selectedDates').children.length;
-      if(!start&&!end&&!target&&!selected.length&&!specificCount)one('#planError').textContent='';
-      const totalDays=weekly?reading.length:specificCount;
-      const overview=one('#planOverview');overview.replaceChildren();
-      [['بداية الدورة',one('#startDisplay').textContent],['نهاية الدورة',one('#endDisplay').textContent],['أيام القراءة',totalDays?`${nf.format(totalDays)} يومًا`:'—']].forEach(([label,value])=>{const item=document.createElement('div');item.innerHTML=`<span>${label}</span><strong>${value}</strong>`;overview.append(item)});
-      const cadence=one('#planCadence');cadence.replaceChildren();
-      if(target&&totalDays){const perDay=target/totalDays;const period=Math.max(1,Math.ceil((dateValue(end)-dateValue(start))/86400000)+1);const perWeek=target*7/period;const daily=perDay<1?`كتاب واحد كل ${nf.format(Math.ceil(totalDays/target))} يوم قراءة`:`${nf.format(perDay)} كتاب لكل يوم قراءة`;cadence.innerHTML=`<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>${daily} · ${nf.format(perWeek)} كتاب أسبوعيًا</p></div>`}else cadence.innerHTML='<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>حدد الهدف وأيام القراءة لتظهر وتيرة خطتك.</p></div>';
-      const preview=one('#planPreview');preview.replaceChildren();
-      const heading=document.createElement('div');heading.className='preview-heading';heading.innerHTML=`<strong>${weekly?'أيام القراءة القادمة':'أيام القراءة المختارة'}</strong><span>${totalDays?`${nf.format(totalDays)} يومًا في الخطة`:'لم تحدد أيامًا بعد'}</span>`;preview.append(heading);
-      const days=document.createElement('div');days.className='preview-days';
-      if(weekly){reading.slice(0,12).forEach(value=>{const chip=document.createElement('span');chip.textContent=dayLabel(value);days.append(chip)});if(reading.length>12){const more=document.createElement('span');more.className='more-days';more.textContent=`+${nf.format(reading.length-12)}`;days.append(more)}}else if(specificCount){[...one('#selectedDates').children].forEach(chip=>{const copy=document.createElement('span');copy.textContent=chip.textContent.replace(' ×','');days.append(copy)})}preview.append(days);
+      const readingDays=weeklyMode?reading.length:specificCount;
+      const durationDays=start&&end&&start<=end?Math.round((dateValue(end)-dateValue(start))/86400000)+1:0;
+      one('#readingCount').textContent=durationDays?nf.format(durationDays):'—';
+      counter.querySelector('span').textContent='يومًا في الدورة';
+      if(!start&&!end&&!targetBooks&&!selected.length&&!specificCount)errors.textContent='';
+      const cadence=one('#planCadence');cadence.hidden=!(targetBooks&&readingDays);
+      if(!cadence.hidden){const perDay=targetBooks/readingDays;const period=Math.max(1,durationDays);const perWeek=targetBooks*7/period;const daily=perDay<1?`كتاب واحد كل ${nf.format(Math.ceil(readingDays/targetBooks))} يوم قراءة`:`${nf.format(perDay)} كتاب لكل يوم قراءة`;cadence.innerHTML=`<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>${daily} · ${nf.format(perWeek)} كتاب أسبوعيًا</p></div>`}
     };
     form.addEventListener('change',refresh);form.addEventListener('input',refresh);[one('#weeklyMode'),one('#specificMode'),one('#specificPicker')].forEach(button=>button.addEventListener('click',()=>setTimeout(refresh,0)));refresh();
   }
