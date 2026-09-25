@@ -18,8 +18,8 @@ const planStyles=document.createElement('link');planStyles.rel='stylesheet';plan
     const dates=one('.plan-dates',form),counter=one('.reading-counter',form),schedule=one('.schedule-mode',form),errors=one('#planError',form);
     card.querySelector('h2').insertAdjacentHTML('afterend','<p class="plan-intro">خطّة واضحة، ووتيرة مناسبة، وأيام قراءة محددة.</p><section id="planOverview" class="plan-overview" aria-live="polite"></section>');
     dates.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">مدة الدورة</h3>');
-    one('#targetBooks').classList.add('plan-goal');
-    counter.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">هدف القراءة</h3>');
+    const goal=one('#targetBooks').closest('label');goal.classList.add('plan-goal');
+    goal.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">هدف القراءة</h3>');
     schedule.insertAdjacentHTML('beforebegin','<h3 class="plan-section-title">جدول القراءة</h3>');
     errors.insertAdjacentHTML('beforebegin','<section id="planCadence" class="plan-cadence" aria-live="polite"></section><section id="planPreview" class="plan-preview" aria-live="polite"></section>');
     const save=one('button[type="submit"]',form);save.classList.add('plan-save');
@@ -33,7 +33,7 @@ const planStyles=document.createElement('link');planStyles.rel='stylesheet';plan
       const overview=one('#planOverview');overview.replaceChildren();
       [['بداية الدورة',one('#startDisplay').textContent],['نهاية الدورة',one('#endDisplay').textContent],['أيام القراءة',totalDays?`${nf.format(totalDays)} يومًا`:'—']].forEach(([label,value])=>{const item=document.createElement('div');item.innerHTML=`<span>${label}</span><strong>${value}</strong>`;overview.append(item)});
       const cadence=one('#planCadence');cadence.replaceChildren();
-      if(target&&totalDays){const perDay=target/totalDays;const period=Math.max(1,Math.ceil((dateValue(end)-dateValue(start))/86400000)+1);const perWeek=target*7/period;cadence.innerHTML=`<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>${nf.format(perDay)} كتاب لكل يوم قراءة · ${nf.format(perWeek)} كتاب أسبوعيًا</p></div>`}else cadence.innerHTML='<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>حدد الهدف وأيام القراءة لتظهر وتيرة خطتك.</p></div>';
+      if(target&&totalDays){const perDay=target/totalDays;const period=Math.max(1,Math.ceil((dateValue(end)-dateValue(start))/86400000)+1);const perWeek=target*7/period;const daily=perDay<1?`كتاب واحد كل ${nf.format(Math.ceil(totalDays/target))} يوم قراءة`:`${nf.format(perDay)} كتاب لكل يوم قراءة`;cadence.innerHTML=`<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>${daily} · ${nf.format(perWeek)} كتاب أسبوعيًا</p></div>`}else cadence.innerHTML='<span class="cadence-mark">⌁</span><div><strong>وتيرتك المقترحة</strong><p>حدد الهدف وأيام القراءة لتظهر وتيرة خطتك.</p></div>';
       const preview=one('#planPreview');preview.replaceChildren();
       const heading=document.createElement('div');heading.className='preview-heading';heading.innerHTML=`<strong>${weekly?'أيام القراءة القادمة':'أيام القراءة المختارة'}</strong><span>${totalDays?`${nf.format(totalDays)} يومًا في الخطة`:'لم تحدد أيامًا بعد'}</span>`;preview.append(heading);
       const days=document.createElement('div');days.className='preview-days';
