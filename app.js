@@ -1,5 +1,5 @@
 'use strict';
-const identityStyles=document.createElement('link');identityStyles.rel='stylesheet';identityStyles.href='identity.css?v=1';document.head.append(identityStyles);const readingStyles=document.createElement('link');readingStyles.href='reading-estimates.css?v=24';readingStyles.rel='stylesheet';const planUiScript=document.createElement('script');planUiScript.src='plan-ui.js?v=2';planUiScript.defer=true;document.head.append(readingStyles);document.head.append(planUiScript);
+const identityStyles=document.createElement('link');identityStyles.rel='stylesheet';identityStyles.href='identity.css?v=1';document.head.append(identityStyles);const readingStyles=document.createElement('link');readingStyles.href='reading-estimates.css?v=25';readingStyles.rel='stylesheet';const planUiScript=document.createElement('script');planUiScript.src='plan-ui.js?v=2';planUiScript.defer=true;document.head.append(readingStyles);document.head.append(planUiScript);
 const $=id=>document.getElementById(id),key='reading-journey-v2',fmt=new Intl.NumberFormat('ar-SA',{maximumFractionDigits:1}),n=v=>fmt.format(v);
 function dateString(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 const today=()=>dateString(new Date()),addDays=(s,n)=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return dateString(d)};
@@ -30,15 +30,11 @@ let viewTransitionToken=0;
 function prepareViewMotion(view){if(!view)return;view.querySelectorAll('[data-view-motion]').forEach(el=>{el.removeAttribute('data-view-motion');el.removeAttribute('data-motion-side');el.style.removeProperty('--view-motion-delay')});const side=el=>{const rect=el.getBoundingClientRect();return rect.left+rect.width/2>=window.innerWidth/2?'right':'left'},surfaces=[...view.querySelectorAll(':scope>.panel,:scope>.overview,:scope>.book-filter,:scope>form,.book-card,.book-journey-card,.comparison-card,.reader-history-wrap')].filter(el=>{const rect=el.getBoundingClientRect();return rect.width&&rect.height});surfaces.slice(0,24).forEach((el,index)=>{el.dataset.viewMotion='surface';el.dataset.motionSide=side(el);el.style.setProperty('--view-motion-delay',`${Math.min(index*56,280)}ms`)});const texts=[...view.querySelectorAll('h2,h3,h4,p,label,strong,.muted,.pill')].filter(el=>{const rect=el.getBoundingClientRect();return rect.width&&rect.height});texts.slice(0,48).forEach((el,index)=>{const parent=el.closest('[data-view-motion=surface]'),base=parent?Number(parent.style.getPropertyValue('--view-motion-delay').replace('ms',''))||0:0;el.dataset.viewMotion='text';el.dataset.motionSide=side(el);el.style.setProperty('--view-motion-delay',`${base+135+Math.min(index%4*34,102)}ms`)})}
 function enterView(next){next.hidden=false;next.classList.remove('is-leaving','is-entering');prepareViewMotion(next);requestAnimationFrame(()=>next.classList.add('is-entering'));setTimeout(()=>next.classList.remove('is-entering'),980)}
 function go(view,focus=true){
-const nextId=titles[view]?view:'home',next=$('view-'+nextId),previous=[...document.querySelectorAll('.app-view')].find(el=>!el.hidden);
+const nextId=titles[view]?view:'home',next=$('view-'+nextId);
 currentView=nextId;
 document.querySelectorAll('[data-view]').forEach(e=>{if(e.dataset.view===currentView)e.setAttribute('aria-current','page');else e.removeAttribute('aria-current')});
 requestAnimationFrame(moveNavIndicator);$('screenTitle').textContent=titles[currentView];history.replaceState(null,'','#'+currentView);render();
-const token=++viewTransitionToken,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(previous!==next&&previous){
-previous.classList.remove('is-entering');previous.classList.add('is-leaving');
-setTimeout(()=>{if(token!==viewTransitionToken)return;previous.hidden=true;previous.classList.remove('is-leaving');enterView(next)},reduce?0:150);
-}else{document.querySelectorAll('.app-view').forEach(el=>{if(el!==next)el.hidden=true});enterView(next)}
+++viewTransitionToken;document.querySelectorAll('.app-view').forEach(el=>{el.hidden=el!==next;el.classList.remove('is-leaving','is-entering')});enterView(next);
 if(focus){window.scrollTo(0,0);$('screenTitle').focus({preventScroll:true})}
 }
 function moveNavIndicator(){const nav=document.querySelector('.bottom-nav'),active=nav?.querySelector('[aria-current]');if(!nav||!active)return;nav.querySelectorAll('button[data-view]').forEach(button=>button.classList.toggle('active',button===active));const position=()=>{const navRect=nav.getBoundingClientRect(),buttonRect=active.getBoundingClientRect();nav.style.setProperty('--nav-indicator-width',`${buttonRect.width}px`);nav.style.setProperty('--nav-indicator-center',`${buttonRect.left-navRect.left+buttonRect.width/2}px`)};position();requestAnimationFrame(position)}
