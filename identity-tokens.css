@@ -31,17 +31,16 @@ body{background:var(--identity-background)!important;color:var(--identity-ink)!i
 .timer{background:var(--identity-sky)!important;color:var(--identity-ink)!important}
 .timer .muted,.muted{color:var(--identity-muted)!important}
 
-button:not(.secondary),.plan-save{background:var(--identity-accent)!important;color:var(--identity-accent-ink)!important;border:0!important;box-shadow:0 7px 16px rgba(91,78,134,.12)!important}
+button:not(.secondary):not([data-view]),.plan-save{background:var(--identity-accent)!important;color:var(--identity-accent-ink)!important;border:0!important;box-shadow:0 7px 16px rgba(91,78,134,.12)!important}
 button.secondary,.date-trigger,.number-stepper button{background:var(--identity-surface)!important;color:var(--identity-ink)!important;border-color:var(--identity-line)!important}
 .book-symbol{background:var(--identity-mint)!important;color:#3D9680!important}
 .plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--identity-lilac)!important;color:var(--identity-ink)!important}
 
 .bottom-nav{background:rgba(255,255,255,.9)!important;border-color:var(--identity-line)!important}
-.bottom-nav::before{background:var(--identity-lilac)!important;box-shadow:inset 0 1px 0 #fff,0 7px 18px rgba(31,41,68,.1)!important}
-.bottom-nav button{color:var(--identity-muted)!important}
+.bottom-nav::before{display:none!important}
+.bottom-nav button{background:transparent!important;color:var(--identity-muted)!important;box-shadow:none!important}
 .bottom-nav button[aria-current],.bottom-nav button.active{color:var(--identity-accent-ink)!important}
-.nav-icon img,.header-button img,.date-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important}
-.app-header .header-button,.app-header .header-button:first-child{background:var(--identity-sky)!important;color:var(--identity-accent-ink)!important;border-color:#fff!important}
+.app-header .header-button,.app-header .header-button:first-child{background:var(--identity-sky)!important;color:var(--identity-sky-ink)!important;border-color:#fff!important}
 
 /* أيقونات دائرية: الخلفية باستيل، والرمز من اللون نفسه بدرجة أغمق. */
 .app-header .header-button,.bottom-nav .nav-icon,.book-symbol{
@@ -50,7 +49,7 @@ button.secondary,.date-trigger,.number-stepper button{background:var(--identity-
   border-radius:50%!important;
 }
 .app-header .header-button{width:48px!important;height:48px!important}
-.bottom-nav .nav-icon{width:38px!important;height:38px!important}
+.bottom-nav .nav-icon{width:42px!important;height:42px!important;background:var(--identity-sky)!important}
 .bottom-nav [data-view="home"] .nav-icon{background:var(--identity-sky)!important}
 .bottom-nav [data-view="plan"] .nav-icon{background:var(--identity-peach)!important}
 .bottom-nav [data-view="reader"] .nav-icon{background:var(--identity-mint)!important}
@@ -61,3 +60,10 @@ button.secondary,.date-trigger,.number-stepper button{background:var(--identity-
 .bottom-nav [data-view="reader"] .nav-icon img{filter:invert(42%) sepia(27%) saturate(760%) hue-rotate(125deg) brightness(88%) contrast(86%)!important}
 .bottom-nav [data-view="books"] .nav-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important}
 .bottom-nav [data-view="progress"] .nav-icon img{filter:invert(48%) sepia(23%) saturate(742%) hue-rotate(287deg) brightness(88%) contrast(85%)!important}
+.bottom-nav [aria-current] .nav-icon{border:2px solid #fff!important;box-shadow:0 5px 12px rgba(31,41,68,.1)!important}
+.bottom-nav [data-view="home"][aria-current] .nav-icon{background:var(--identity-sky)!important}
+.bottom-nav [data-view="plan"][aria-current] .nav-icon{background:var(--identity-peach)!important}
+.bottom-nav [data-view="reader"][aria-current] .nav-icon{background:var(--identity-mint)!important}
+.bottom-nav [data-view="books"][aria-current] .nav-icon{background:var(--identity-lilac)!important}
+.bottom-nav [data-view="progress"][aria-current] .nav-icon{background:var(--identity-pink)!important}
+.app-header .header-button img{filter:invert(41%) sepia(26%) saturate(900%) hue-rotate(150deg) brightness(88%) contrast(85%)!important}
