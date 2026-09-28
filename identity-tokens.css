@@ -98,3 +98,26 @@ body{background:var(--identity-background)!important}
 .bar span,.timer-progress span{background:var(--identity-mint-ink)!important}
 .date-trigger,.number-stepper button{background:#FFF1E8!important;color:var(--identity-peach-ink)!important;border-color:#F4D5C2!important}
 .plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:#FFD9C2!important;color:var(--identity-peach-ink)!important}
+
+/* درجات الإجراءات: كل زر ورمز أغمق من سطحه الباستيلي، دون تدرجات أو ألوان مشبعة. */
+:root{--sky-action:#A8DCEE;--sky-deep:#2F718B;--mint-action:#A9E3CC;--mint-deep:#2F7664;--lilac-action:#CBBBED;--lilac-deep:#5B4E86;--peach-action:#F6C3A4;--peach-deep:#9A6044;--pink-action:#F0B8D0;--pink-deep:#99516E}
+.today-card .pill,.today-card #todayRead{background:var(--mint-action)!important;color:var(--mint-deep)!important;border-color:#92D4BA!important}
+.speed-card .test-badge,#startTest{background:var(--sky-action)!important;color:var(--sky-deep)!important;border-color:#8ECBE5!important}
+#view-plan #planForm button[type=submit],.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--peach-action)!important;color:var(--peach-deep)!important;border-color:#EDB896!important}
+#view-books #addBook,.book-card .book-symbol,.book-card .book-arrow{background:var(--lilac-action)!important;color:var(--lilac-deep)!important;border-color:#C4B1EB!important}
+#view-books .book-card strong,#view-books .book-card small{color:var(--lilac-deep)!important}
+.bottom-nav [data-view="books"] .nav-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important;opacity:1!important}
+#view-progress .column i,#view-progress .bar span{background:var(--pink-action)!important}
+#view-progress .heading h2,#view-progress strong{color:var(--pink-deep)!important}
+
+/* جلستي: عائلة خضراء متدرجة من البطاقة إلى أدواتها وتفاصيلها. */
+#view-reader{background:#EAF9F2!important;border-radius:28px;padding:12px}
+#view-reader .panel.timer{background:var(--identity-mint)!important;border-color:#A9DDC8!important}
+#view-reader .timer-mode,#view-reader .timer-progress{background:#C9EEDC!important}
+#view-reader .timer-mode button[aria-pressed=true],#view-reader #play{background:var(--mint-action)!important;color:var(--mint-deep)!important;border-color:#92D4BA!important}
+#view-reader .comparison-card,#view-reader .reader-journey-card,#view-reader .reader-session{background:#EFFBF5!important;border-color:#BEE8D5!important}
+#view-reader .comparison-card h3,#view-reader .reader-journey-card h3,#view-reader .reader-session strong{color:var(--mint-deep)!important}
+
+/* رمزا الرأس خفيفان ومحايدان: لا دائرة ولا خلفية لونية. */
+.app-header .header-button,.app-header .header-button:first-child,.app-header .header-button:last-child{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+.app-header .header-button img{filter:grayscale(1) contrast(.82)!important;opacity:.78!important}
