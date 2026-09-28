@@ -106,6 +106,8 @@ body{background:var(--identity-background)!important}
 #view-plan #planForm button[type=submit],.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--peach-action)!important;color:var(--peach-deep)!important;border-color:#EDB896!important}
 #view-books #addBook,.book-card .book-symbol,.book-card .book-arrow{background:var(--lilac-action)!important;color:var(--lilac-deep)!important;border-color:#C4B1EB!important}
 #view-books .book-card strong,#view-books .book-card small{color:var(--lilac-deep)!important}
+.book-filter button,.book-filter [aria-pressed=true]{background:var(--lilac-action)!important;color:var(--lilac-deep)!important;border-color:#C4B1EB!important;box-shadow:none!important}
+.book-filter button span{color:var(--lilac-deep)!important}
 .bottom-nav [data-view="books"] .nav-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important;opacity:1!important}
 #view-progress .column i,#view-progress .bar span{background:var(--pink-action)!important}
 #view-progress .heading h2,#view-progress strong{color:var(--pink-deep)!important}
