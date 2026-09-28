@@ -23,7 +23,7 @@
 body{background:var(--identity-background)!important;color:var(--identity-ink)!important}
 .app-header,.panel,.stat,.book-card,.feedback-dialog,.notification-dialog,.side-dialog{background:var(--identity-surface)!important;border-color:var(--identity-line)!important}
 .app-header{box-shadow:0 10px 26px rgba(31,41,68,.08)!important}
-.today-card{background:var(--identity-mint)!important;border-right-color:#C8BFE5!important}
+.today-card{background:var(--identity-mint)!important;border-right-color:#92D4BA!important}
 .overview .stat:nth-child(1){background:var(--identity-lilac)!important;border-top-color:#C8BFE5!important}
 .overview .stat:nth-child(2){background:var(--identity-sky)!important;border-top-color:#8ECBE5!important}
 .overview .stat:nth-child(3){background:var(--identity-mint)!important;border-top-color:#92D4BA!important}
@@ -31,16 +31,24 @@ body{background:var(--identity-background)!important;color:var(--identity-ink)!i
 .timer{background:var(--identity-sky)!important;color:var(--identity-ink)!important}
 .timer .muted,.muted{color:var(--identity-muted)!important}
 
-button:not(.secondary):not([data-view]),.plan-save{background:var(--identity-accent)!important;color:var(--identity-accent-ink)!important;border:0!important;box-shadow:0 7px 16px rgba(91,78,134,.12)!important}
+/* لا يوجد لون إجراء افتراضي؛ اللون يأتي من وظيفة العنصر وبطاقته. */
+button:not(.secondary):not([data-view]),.plan-save{background:var(--identity-surface)!important;color:var(--identity-ink)!important;border:1px solid var(--identity-line)!important;box-shadow:0 5px 13px rgba(31,41,68,.07)!important}
+button:not(.secondary):not([data-view])::before{color:currentColor!important}
+#todayRead,#play,#readBook,#finish{background:var(--identity-mint)!important;color:var(--identity-mint-ink)!important;border-color:#B7E7D5!important}
+#startTest,#feedbackOK,#saveProfile,#doneCalendar{background:var(--identity-sky)!important;color:var(--identity-sky-ink)!important;border-color:#B9E2F0!important}
+#planForm button[type=submit]{background:var(--identity-peach)!important;color:var(--identity-peach-ink)!important;border-color:#F7D1BA!important}
+#addBook{background:var(--identity-lilac)!important;color:var(--identity-lilac-ink)!important;border-color:#D8CCF4!important}
+.timer-mode button[aria-pressed=true],.schedule-mode [aria-pressed=true]{background:var(--identity-mint)!important;color:var(--identity-mint-ink)!important}
+.book-filter [aria-pressed=true]{background:var(--identity-lilac)!important;color:var(--identity-lilac-ink)!important}
 button.secondary,.date-trigger,.number-stepper button{background:var(--identity-surface)!important;color:var(--identity-ink)!important;border-color:var(--identity-line)!important}
 .book-symbol{background:var(--identity-mint)!important;color:#3D9680!important}
-.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--identity-lilac)!important;color:var(--identity-ink)!important}
+.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--identity-peach)!important;color:var(--identity-peach-ink)!important}
 
 .bottom-nav{background:rgba(255,255,255,.9)!important;border-color:var(--identity-line)!important}
 .bottom-nav::before{display:none!important}
 .bottom-nav button{background:transparent!important;color:var(--identity-muted)!important;box-shadow:none!important}
 .bottom-nav button[aria-current],.bottom-nav button.active{color:var(--identity-accent-ink)!important}
-.app-header .header-button,.app-header .header-button:first-child{background:var(--identity-sky)!important;color:var(--identity-sky-ink)!important;border-color:#fff!important}
+.app-header .header-button,.app-header .header-button:first-child,.app-header .header-button:last-child{background:var(--identity-sky)!important;color:var(--identity-sky-ink)!important;border-color:#fff!important}
 
 /* أيقونات دائرية: الخلفية باستيل، والرمز من اللون نفسه بدرجة أغمق. */
 .app-header .header-button,.bottom-nav .nav-icon,.book-symbol{
