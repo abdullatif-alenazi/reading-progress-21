@@ -3,10 +3,15 @@
   --identity-background:#F5F6FC;
   --identity-surface:#FFFFFF;
   --identity-sky:#D9F1FB;
+  --identity-sky-ink:#397B93;
   --identity-mint:#D7F4E9;
+  --identity-mint-ink:#3F8876;
   --identity-lilac:#E7DDFB;
+  --identity-lilac-ink:#5B4E86;
   --identity-peach:#FFE3D1;
+  --identity-peach-ink:#A76A4D;
   --identity-pink:#FBE0EC;
+  --identity-pink-ink:#A56280;
   --identity-yellow:#FFF0C9;
   --identity-ink:#1F2944;
   --identity-muted:#667085;
@@ -37,3 +42,22 @@ button.secondary,.date-trigger,.number-stepper button{background:var(--identity-
 .bottom-nav button[aria-current],.bottom-nav button.active{color:var(--identity-accent-ink)!important}
 .nav-icon img,.header-button img,.date-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important}
 .app-header .header-button,.app-header .header-button:first-child{background:var(--identity-sky)!important;color:var(--identity-accent-ink)!important;border-color:#fff!important}
+
+/* أيقونات دائرية: الخلفية باستيل، والرمز من اللون نفسه بدرجة أغمق. */
+.app-header .header-button,.bottom-nav .nav-icon,.book-symbol{
+  display:grid!important;
+  place-items:center!important;
+  border-radius:50%!important;
+}
+.app-header .header-button{width:48px!important;height:48px!important}
+.bottom-nav .nav-icon{width:38px!important;height:38px!important}
+.bottom-nav [data-view="home"] .nav-icon{background:var(--identity-sky)!important}
+.bottom-nav [data-view="plan"] .nav-icon{background:var(--identity-peach)!important}
+.bottom-nav [data-view="reader"] .nav-icon{background:var(--identity-mint)!important}
+.bottom-nav [data-view="books"] .nav-icon{background:var(--identity-lilac)!important}
+.bottom-nav [data-view="progress"] .nav-icon{background:var(--identity-pink)!important}
+.bottom-nav [data-view="home"] .nav-icon img{filter:invert(41%) sepia(26%) saturate(900%) hue-rotate(150deg) brightness(88%) contrast(85%)!important}
+.bottom-nav [data-view="plan"] .nav-icon img{filter:invert(49%) sepia(34%) saturate(700%) hue-rotate(335deg) brightness(90%) contrast(86%)!important}
+.bottom-nav [data-view="reader"] .nav-icon img{filter:invert(42%) sepia(27%) saturate(760%) hue-rotate(125deg) brightness(88%) contrast(86%)!important}
+.bottom-nav [data-view="books"] .nav-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important}
+.bottom-nav [data-view="progress"] .nav-icon img{filter:invert(48%) sepia(23%) saturate(742%) hue-rotate(287deg) brightness(88%) contrast(85%)!important}
