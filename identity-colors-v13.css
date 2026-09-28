@@ -1,0 +1,156 @@
+/* هوية القراءة السريعة — مصدر الألوان الوحيد للتطبيق. */
+:root{
+  --identity-background:#F5F6FC;
+  --identity-surface:#FFFFFF;
+  --identity-sky:#D9F1FB;
+  --identity-sky-ink:#397B93;
+  --identity-mint:#D7F4E9;
+  --identity-mint-ink:#3F8876;
+  --identity-lilac:#E7DDFB;
+  --identity-lilac-ink:#5B4E86;
+  --identity-peach:#FFE3D1;
+  --identity-peach-ink:#A76A4D;
+  --identity-pink:#FBE0EC;
+  --identity-pink-ink:#A56280;
+  --identity-yellow:#FFF0C9;
+  --identity-ink:#1F2944;
+  --identity-muted:#667085;
+  --identity-accent:#DED7F3;
+  --identity-accent-ink:#5B4E86;
+  --identity-line:#E4E7F0;
+}
+
+body{background:var(--identity-background)!important;color:var(--identity-ink)!important}
+.app-header,.panel,.stat,.book-card,.feedback-dialog,.notification-dialog,.side-dialog{background:var(--identity-surface)!important;border-color:var(--identity-line)!important}
+.app-header{box-shadow:0 10px 26px rgba(31,41,68,.08)!important}
+.today-card{background:var(--identity-mint)!important;border-right-color:#92D4BA!important}
+.overview .stat:nth-child(1){background:var(--identity-lilac)!important;border-top-color:#C8BFE5!important}
+.overview .stat:nth-child(2){background:var(--identity-sky)!important;border-top-color:#8ECBE5!important}
+.overview .stat:nth-child(3){background:var(--identity-mint)!important;border-top-color:#92D4BA!important}
+.overview .stat:nth-child(4){background:var(--identity-pink)!important;border-top-color:#E8ACC6!important}
+.timer{background:var(--identity-sky)!important;color:var(--identity-ink)!important}
+.timer .muted,.muted{color:var(--identity-muted)!important}
+
+/* لا يوجد لون إجراء افتراضي؛ اللون يأتي من وظيفة العنصر وبطاقته. */
+button:not(.secondary):not([data-view]),.plan-save{background:var(--identity-surface)!important;color:var(--identity-ink)!important;border:1px solid var(--identity-line)!important;box-shadow:0 5px 13px rgba(31,41,68,.07)!important}
+button:not(.secondary):not([data-view])::before{color:currentColor!important}
+#todayRead,#play,#readBook,#finish{background:var(--identity-mint)!important;color:var(--identity-mint-ink)!important;border-color:#B7E7D5!important}
+#startTest,#feedbackOK,#saveProfile,#doneCalendar{background:var(--identity-sky)!important;color:var(--identity-sky-ink)!important;border-color:#B9E2F0!important}
+#planForm button[type=submit]{background:var(--identity-peach)!important;color:var(--identity-peach-ink)!important;border-color:#F7D1BA!important}
+#addBook{background:var(--identity-lilac)!important;color:var(--identity-lilac-ink)!important;border-color:#D8CCF4!important}
+.timer-mode button[aria-pressed=true],.schedule-mode [aria-pressed=true]{background:var(--identity-mint)!important;color:var(--identity-mint-ink)!important}
+.book-filter [aria-pressed=true]{background:var(--identity-lilac)!important;color:var(--identity-lilac-ink)!important}
+button.secondary,.date-trigger,.number-stepper button{background:var(--identity-surface)!important;color:var(--identity-ink)!important;border-color:var(--identity-line)!important}
+.book-symbol{background:var(--identity-mint)!important;color:#3D9680!important}
+.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--identity-peach)!important;color:var(--identity-peach-ink)!important}
+
+.bottom-nav{background:rgba(255,255,255,.9)!important;border-color:var(--identity-line)!important}
+.bottom-nav::before{display:none!important}
+.bottom-nav button{background:transparent!important;color:var(--identity-muted)!important;box-shadow:none!important}
+.bottom-nav button[aria-current],.bottom-nav button.active{color:var(--identity-accent-ink)!important}
+.app-header .header-button,.app-header .header-button:first-child,.app-header .header-button:last-child{background:var(--identity-sky)!important;color:var(--identity-sky-ink)!important;border-color:#fff!important}
+
+/* أيقونات دائرية: الخلفية باستيل، والرمز من اللون نفسه بدرجة أغمق. */
+.app-header .header-button,.bottom-nav .nav-icon,.book-symbol{
+  display:grid!important;
+  place-items:center!important;
+  border-radius:50%!important;
+}
+.app-header .header-button{width:48px!important;height:48px!important}
+.bottom-nav .nav-icon{width:42px!important;height:42px!important;background:var(--identity-sky)!important}
+.bottom-nav [data-view="home"] .nav-icon{background:var(--identity-sky)!important}
+.bottom-nav [data-view="plan"] .nav-icon{background:var(--identity-peach)!important}
+.bottom-nav [data-view="reader"] .nav-icon{background:var(--identity-mint)!important}
+.bottom-nav [data-view="books"] .nav-icon{background:var(--identity-lilac)!important}
+.bottom-nav [data-view="progress"] .nav-icon{background:var(--identity-pink)!important}
+.bottom-nav [data-view="home"] .nav-icon img{filter:invert(41%) sepia(26%) saturate(900%) hue-rotate(150deg) brightness(88%) contrast(85%)!important}
+.bottom-nav [data-view="plan"] .nav-icon img{filter:invert(49%) sepia(34%) saturate(700%) hue-rotate(335deg) brightness(90%) contrast(86%)!important}
+.bottom-nav [data-view="reader"] .nav-icon img{filter:invert(42%) sepia(27%) saturate(760%) hue-rotate(125deg) brightness(88%) contrast(86%)!important}
+.bottom-nav [data-view="books"] .nav-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important}
+.bottom-nav [data-view="progress"] .nav-icon img{filter:invert(48%) sepia(23%) saturate(742%) hue-rotate(287deg) brightness(88%) contrast(85%)!important}
+.bottom-nav [aria-current] .nav-icon{border:2px solid #fff!important;box-shadow:0 5px 12px rgba(31,41,68,.1)!important}
+.bottom-nav [data-view="home"][aria-current] .nav-icon{background:var(--identity-sky)!important}
+.bottom-nav [data-view="plan"][aria-current] .nav-icon{background:var(--identity-peach)!important}
+.bottom-nav [data-view="reader"][aria-current] .nav-icon{background:var(--identity-mint)!important}
+.bottom-nav [data-view="books"][aria-current] .nav-icon{background:var(--identity-lilac)!important}
+.bottom-nav [data-view="progress"][aria-current] .nav-icon{background:var(--identity-pink)!important}
+
+/* المصدر الوحيد للألوان بعد فصل ملف التخطيط. */
+body{background:var(--identity-background)!important}
+select,#view-reader select{background:var(--mint-action)!important;color:var(--mint-deep)!important;border-color:#92D4BA!important}
+#view-reader .clock,#view-reader .clock.is-warning,#view-reader .clock.is-overdue{color:var(--mint-deep)!important;text-shadow:none!important}
+#view-reader .timer-progress span{background:var(--mint-deep)!important}
+#view-reader .timer-progress span.is-overdue{background:var(--peach-deep)!important}
+.bottom-nav button{color:var(--identity-muted)!important}
+.bottom-nav button[aria-current],.bottom-nav button.active{color:var(--identity-ink)!important}
+.bottom-nav .nav-icon,.bottom-nav [aria-current] .nav-icon{width:42px!important;height:42px!important;border-radius:50%!important;transform:none!important}
+.bottom-nav .nav-icon img{filter:grayscale(1) brightness(.35) contrast(1.15)!important;opacity:1!important}
+.bottom-nav [aria-current] .nav-icon{border:2px solid #fff!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 5px 14px rgba(31,41,68,.1)!important}
+.bottom-nav [data-view="home"][aria-current] .nav-icon{background:var(--identity-sky)!important}.bottom-nav [data-view="plan"][aria-current] .nav-icon{background:var(--identity-peach)!important}.bottom-nav [data-view="reader"][aria-current] .nav-icon{background:var(--identity-mint)!important}.bottom-nav [data-view="books"][aria-current] .nav-icon{background:var(--identity-lilac)!important}.bottom-nav [data-view="progress"][aria-current] .nav-icon{background:var(--identity-pink)!important}
+.app-header .header-button img{filter:invert(41%) sepia(26%) saturate(900%) hue-rotate(150deg) brightness(88%) contrast(85%)!important}
+
+/* قاعدة الواجهة: كل سطح باستيل يحمل نصوصه ورموزه وإجراءه بدرجة أغمق من لونه نفسه. */
+body{background:var(--identity-background)!important}
+.today-card{background:var(--identity-mint)!important;border-right-color:#A9DDC8!important}
+.today-card .pill,.today-card #todayRead{background:#BCEBD9!important;color:var(--identity-mint-ink)!important;border-color:#A9DDC8!important}
+.speed-card,#view-home .panel:not(.today-card){background:var(--identity-sky)!important;border-color:#C2E5F0!important}
+.speed-card .test-badge,#startTest{background:#C8EAF6!important;color:var(--identity-sky-ink)!important;border-color:#B4DFEE!important}
+#view-plan .plan-card{background:var(--identity-peach)!important;border-color:#F5D4C1!important}
+#view-plan .plan-card h2,#view-plan .plan-card h3,#view-plan .plan-card .reading-counter{color:var(--identity-peach-ink)!important}
+#view-plan #planForm button[type=submit]{background:#FFD9C2!important;color:var(--identity-peach-ink)!important;border-color:#F5C8AC!important}
+#view-books>.panel,.book-card{background:var(--identity-lilac)!important;border-color:#D8CEF2!important}
+#view-books #addBook,.book-card .book-symbol{background:#D9CDF4!important;color:var(--identity-lilac-ink)!important;border-color:#CCBDEC!important}
+#view-progress>.panel,.overview .stat:nth-child(4){background:var(--identity-pink)!important;border-color:#F0C9D9!important}
+#view-progress .heading h2,#view-progress strong{color:var(--identity-pink-ink)!important}
+.panel.timer{background:var(--identity-mint)!important;border-color:#A9DDC8!important;color:var(--identity-ink)!important}
+.panel.timer h2,.panel.timer .muted,.panel.timer .reader-card-author,.panel.timer .timer-hint,.panel.timer .timer-progress-label{color:var(--identity-mint-ink)!important}
+.panel.timer .clock,.panel.timer .comparison-card h3,.panel.timer .reader-journey-card h3{color:var(--identity-mint-ink)!important}
+.panel.timer .timer-mode,.panel.timer .timer-progress{background:#BCEBD9!important}
+.panel.timer .timer-mode button[aria-pressed=true],.panel.timer #play{background:#AEE2CE!important;color:var(--identity-mint-ink)!important;border-color:#97D5BB!important}
+.panel.timer .comparison-card,.panel.timer .reader-journey-card,.panel.timer .reader-session{background:#E9FAF3!important;border-color:#BFE8D7!important;color:var(--identity-mint-ink)!important}
+.bar span,.timer-progress span{background:var(--identity-mint-ink)!important}
+.date-trigger,.number-stepper button{background:#FFF1E8!important;color:var(--identity-peach-ink)!important;border-color:#F4D5C2!important}
+.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:#FFD9C2!important;color:var(--identity-peach-ink)!important}
+
+/* درجات الإجراءات: كل زر ورمز أغمق من سطحه الباستيلي، دون تدرجات أو ألوان مشبعة. */
+:root{--sky-action:#A8DCEE;--sky-deep:#2F718B;--mint-action:#A9E3CC;--mint-deep:#2F7664;--lilac-action:#CBBBED;--lilac-deep:#5B4E86;--peach-action:#F6C3A4;--peach-deep:#9A6044;--pink-action:#F0B8D0;--pink-deep:#99516E}
+.today-card .pill,.today-card #todayRead{background:var(--mint-action)!important;color:var(--mint-deep)!important;border-color:#92D4BA!important}
+.speed-card .test-badge,#startTest{background:var(--sky-action)!important;color:var(--sky-deep)!important;border-color:#8ECBE5!important}
+#view-plan #planForm button[type=submit],.plan-card #weekdays label:has(:checked),.calendar-grid [aria-pressed=true],.inline-specific-calendar .calendar-grid [aria-pressed=true]{background:var(--peach-action)!important;color:var(--peach-deep)!important;border-color:#EDB896!important}
+#view-books #addBook,.book-card .book-symbol,.book-card .book-arrow{background:var(--lilac-action)!important;color:var(--lilac-deep)!important;border-color:#C4B1EB!important}
+#view-books .book-card strong,#view-books .book-card small{color:var(--lilac-deep)!important}
+.book-filter button,.book-filter [aria-pressed=true]{background:var(--lilac-action)!important;color:var(--lilac-deep)!important;border-color:#C4B1EB!important;box-shadow:none!important}
+.book-filter button span{color:var(--lilac-deep)!important}
+.bottom-nav [data-view="books"] .nav-icon img{filter:invert(31%) sepia(18%) saturate(1162%) hue-rotate(217deg) brightness(91%) contrast(88%)!important;opacity:1!important}
+#view-progress .column i,#view-progress .bar span{background:var(--pink-action)!important}
+#view-progress .heading h2,#view-progress strong{color:var(--pink-deep)!important}
+
+/* جلستي: عائلة خضراء متدرجة من البطاقة إلى أدواتها وتفاصيلها. */
+#view-reader{background:#EAF9F2!important;border-radius:28px;padding:12px}
+#view-reader .panel.timer{background:var(--identity-mint)!important;border-color:#A9DDC8!important}
+#view-reader .timer-mode,#view-reader .timer-progress{background:#C9EEDC!important}
+#view-reader .timer-mode button[aria-pressed=true],#view-reader #play{background:var(--mint-action)!important;color:var(--mint-deep)!important;border-color:#92D4BA!important}
+#view-reader .comparison-card,#view-reader .reader-journey-card,#view-reader .reader-session{background:#EFFBF5!important;border-color:#BEE8D5!important}
+#view-reader .comparison-card h3,#view-reader .reader-journey-card h3,#view-reader .reader-session strong{color:var(--mint-deep)!important}
+
+/* رمزا الرأس خفيفان ومحايدان: لا دائرة ولا خلفية لونية. */
+.app-header .header-button,.app-header .header-button:first-child,.app-header .header-button:last-child{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+.app-header .header-button img{filter:grayscale(1) contrast(.82)!important;opacity:.78!important}
+
+/* قواعد المكوّنات: لا يعود أي تحكم إلى الأبيض؛ يرث عائلة اللون من القسم الحاوي له. */
+#view-plan .plan-card :is(.date-trigger,.schedule-mode button,#weekdays label,.number-stepper,.number-stepper input,.number-stepper button,.reading-counter){background:#F8C9AF!important;color:var(--peach-deep)!important;border-color:#EFAF8C!important;box-shadow:none!important}
+#view-plan .plan-card #weekdays label:has(:checked),#view-plan .plan-card .schedule-mode [aria-pressed=true]{background:var(--peach-action)!important;color:var(--peach-deep)!important;border-color:#E69B72!important}
+#view-plan .plan-card input{color:var(--peach-deep)!important}
+#view-books :is(.book-filter button,.book-filter [aria-pressed=true],.number-stepper,.number-stepper input,.number-stepper button){background:var(--lilac-action)!important;color:var(--lilac-deep)!important;border-color:#C4B1EB!important;box-shadow:none!important}
+#view-reader :is(button:not(.secondary),.timer-mode button,.timer-mode button[aria-pressed=true],.number-stepper,.number-stepper input,.number-stepper button){background:var(--mint-action)!important;color:var(--mint-deep)!important;border-color:#92D4BA!important;box-shadow:none!important}
+#view-progress :is(button:not(.secondary),.number-stepper,.number-stepper input,.number-stepper button){background:var(--pink-action)!important;color:var(--pink-deep)!important;border-color:#E6A4C2!important;box-shadow:none!important}
+
+/* الشريط السفلي: رمز موحّد، وفقاعة زجاجية واحدة تتلوّن بحسب القسم النشط. */
+.bottom-nav .nav-icon{background:transparent!important;border:0!important;box-shadow:none!important}
+.bottom-nav .nav-icon img{filter:grayscale(1) contrast(.88)!important;opacity:1!important}
+.bottom-nav [aria-current] .nav-icon{border:2px solid rgba(255,255,255,.96)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 6px 14px rgba(31,41,68,.11)!important}
+.bottom-nav [data-view="home"][aria-current] .nav-icon{background:var(--identity-sky)!important}
+.bottom-nav [data-view="plan"][aria-current] .nav-icon{background:var(--identity-peach)!important}
+.bottom-nav [data-view="reader"][aria-current] .nav-icon{background:var(--identity-mint)!important}
+.bottom-nav [data-view="books"][aria-current] .nav-icon{background:var(--identity-lilac)!important}
+.bottom-nav [data-view="progress"][aria-current] .nav-icon{background:var(--identity-pink)!important}
